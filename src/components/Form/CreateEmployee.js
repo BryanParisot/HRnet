@@ -1,11 +1,14 @@
 import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addEmploye } from "../../redux/features/employees";
+import Modal from "../Modal/Modal";
 import { states } from "./state";
 
 const CreateEmployee = () => {
   const dispatch = useDispatch();
+  const [validate, setValidate] = useState(false);
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -188,6 +191,7 @@ const CreateEmployee = () => {
           </button>
         </div>
       </form>
+      {validate ? <Modal result={setValidate} /> : ""}
     </div>
   );
 };

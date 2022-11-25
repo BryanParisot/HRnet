@@ -3,12 +3,19 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { departements } from "../../data/departement";
 import { addEmploye } from "../../redux/features/employees";
-import Dropdown from "../Inputs/Dropdown";
 import Input from "../Inputs/Input";
-import Modal from "../Modal/Modal";
+import {
+  Modal,
+  Dropdown,
+  DatePickers
+} from "@bryan__parisot/component-modal-dropdown-datepicker-tailwind-css";
 import { states } from "./state";
 
 const CreateEmployee = () => {
+  const [state, setState] = useState("");
+  const [dateBirth, setDateBirth] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [departement, setDepartement] = useState("");
   const [validate, setValidate] = useState(false);
   const [input, setInput] = useState({
     firstName: "",
@@ -28,9 +35,11 @@ const CreateEmployee = () => {
     });
   };
 
+  //console.log(new Date(dateBirth).toLocaleDateString('fr'));
+console.log(dateBirth);
   const addEmployees = (e) => {
     e.preventDefault();
-    dispatch(addEmploye({ input }));
+    dispatch(addEmploye({ input, state, departement }));
   };
 
   return (
@@ -63,29 +72,16 @@ const CreateEmployee = () => {
           </div>{" "}
           {/* spaceeeeeee */}
           <div className="w-1/4">
-            <label for="email" class="block text-sm font-medium text-gray-700">
-              Date of Birth
-            </label>
-            <div class="mt-1">
-              <input
-                type="date"
-                name="dateOfBirth"
-                class="block w-full p-2 rounded-md border-gray-300 shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              />
-            </div>
-            <label
-              for="email"
-              class="block text-sm font-medium text-gray-700 mt-4"
-            >
-              Start Date
-            </label>
-            <div class="mt-1">
-              <input
-                type="date"
-                name="startDate"
-                class="block w-full p-2 rounded-md border-gray-300 shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              />
-            </div>
+            <DatePickers
+              name="dateOfBirth"
+              label="Date of Birth"
+              onChange={(e) => setDateBirth(e.target.value)}
+            />
+            <DatePickers
+              name="startDate"
+              label="Start Date"
+              onChange={(e) => setStartDate(e.target.value)}
+            />
           </div>
           {/* spaceeeeeeeeeeee */}
           <div className="w-1/4">
@@ -108,12 +104,18 @@ const CreateEmployee = () => {
           </div>
           {/* spaceeeeeeeee */}
           <div className="w-1/4">
-            <Dropdown options={states} label="State" />
+            <Dropdown
+              placeholder="Choose your state"
+              setSelected={setState}
+              selected={state}
+              options={states}
+              label="State"
+            />
 
             <Input
               type="number"
               label=" Zip Code"
-              placeholder="123" 
+              placeholder="123"
               labelId="zipCode"
               value={input.zipCode}
               onChange={handleChange}
@@ -122,18 +124,34 @@ const CreateEmployee = () => {
         </div>
         <div className="w-1/4 text-center">
           {" "}
-          <Dropdown options={departements} label="Department" />
+          <Dropdown
+            placeholder="Choose your department"
+            setSelected={setDepartement}
+            selected={departement}
+            options={departements}
+            label="Department"
+          />
         </div>
         <div>
           <button
             type="submit"
-            class="flex w-full p-2  mt-4 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="flex w-full p-2  mt-4 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Save
           </button>
         </div>
       </form>
-      {validate ? <Modal result={setValidate} /> : ""}
+      {validate ? (
+        <Modal
+          button=" Revenir sur la création d'employé"
+          subtitle=" Vous pouvez accéder aux utilisateurs dans la rubrique
+                    employees"
+          title="Utilisateur crée"
+          openModal={setValidate}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

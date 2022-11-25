@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-const Dropdown = (props, {select, setSelect}) => {
+const Dropdown = ({selected, setSelected, label, options, placeholder}) => {
   const [isActive, setIsActive] = useState(false);
-  const [selected, setSelected] = useState();
   return (
     <div className="mt-2">
       <label for="combobox" class="block text-sm font-medium text-gray-700">
-        {props.label}
+        {label}
       </label>
       <div class="relative mt-1">
         <input
@@ -17,6 +16,7 @@ const Dropdown = (props, {select, setSelect}) => {
           aria-controls="options"
           aria-expanded="false"
           value={selected}
+          placeholder={placeholder}
         />
         <button
           onClick={() => setIsActive(!isActive)}
@@ -45,13 +45,13 @@ const Dropdown = (props, {select, setSelect}) => {
             id="options"
             role="listbox"
           >
-            {props.options.map((item) => (
+            {options.map((item) => (
               <li
                 className="relative select-none py-2 pl-8 pr-4 text-gray-900 cursor-pointer hover:bg-indigo-600 hover:text-white"
                 id="option-0"
                 tabindex="-1"
                 onClick={() => {
-                    setSelected(item.name);
+                  setSelected(item.name);
                   setIsActive(false);
                 }}
               >

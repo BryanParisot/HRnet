@@ -13,7 +13,6 @@ const Modal = (props) => {
           <div className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
             <div>
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                {/* <!-- Heroicon name: outline/check --> */}
                 <svg
                   className="h-6 w-6 text-green-600"
                   xmlns="http://www.w3.org/2000/svg"
@@ -35,23 +34,20 @@ const Modal = (props) => {
                   className="text-lg font-medium leading-6 text-gray-900"
                   id="modal-title"
                 >
-                  Utilisateur crée
+                  {props.title}
                 </h3>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Vous pouvez accéder au utilisateur dans la rubriques
-                    employees
-                  </p>
+                  <p className="text-sm text-gray-500">{props.subtitle}</p>
                 </div>
               </div>
             </div>
             <div className="mt-5 sm:mt-6">
               <button
-                onClick={() => props.result(false)}
+                onClick={() => props.displayModal(false)}
                 type="button"
                 className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm"
               >
-                Revenir sur la création d'employé
+                {props.button}
               </button>
             </div>
           </div>

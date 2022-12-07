@@ -15,6 +15,7 @@ const DatePickers = (props) => {
           name={props.name}
           className="block w-full p-2 rounded-md border-gray-300 shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           onChange={props.onChange}
+          value={props.value}
         />
       </div>
     </div>

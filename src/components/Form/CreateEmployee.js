@@ -1,13 +1,10 @@
-import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { departements } from "../../data/departement";
-import { addEmploye } from "../../redux/features/employees";
 import Input from "../Inputs/Input";
 import {
   Modal,
   Dropdown,
-  DatePickers
+  DatePickers,
 } from "@bryan__parisot/component-modal-dropdown-datepicker-tailwind-css";
 import { states } from "./state";
 
@@ -25,7 +22,6 @@ const CreateEmployee = () => {
     zipCode: "",
   });
 
-  const dispatch = useDispatch();
 
   const handleChange = (evt) => {
     const value = evt.target.value;
@@ -35,11 +31,43 @@ const CreateEmployee = () => {
     });
   };
 
-  //console.log(new Date(dateBirth).toLocaleDateString('fr'));
-console.log(dateBirth);
+  const resetInput = () => {
+    setInput({
+      firstName: "",
+      lastName: "",
+      street: "",
+      city: "",
+      zipCode: "",
+    });
+    setDepartement("");
+    setDateBirth("");
+    setStartDate("");
+    setState("");
+  };
+
   const addEmployees = (e) => {
     e.preventDefault();
-    dispatch(addEmploye({ input, state, departement }));
+
+    let datas = JSON.parse(localStorage.getItem("employe") || "[]");
+    let data = {
+      "First Name": input.firstName,
+      "Last Name": input.lastName,
+      "Date of Birth": new Date(dateBirth).toLocaleDateString("fr"),
+      "Start Date": new Date(startDate).toLocaleDateString("fr"),
+      Street: input.street,
+      City: input.city,
+      State: state,
+      "Zip Code": input.zipCode,
+      Department: departement,
+    };
+
+    datas.push(data);
+
+    localStorage.setItem("employe", JSON.stringify(datas));
+
+    resetInput();
+
+    setValidate(true);
   };
 
   return (
@@ -76,11 +104,13 @@ console.log(dateBirth);
               name="dateOfBirth"
               label="Date of Birth"
               onChange={(e) => setDateBirth(e.target.value)}
+              value={dateBirth}
             />
             <DatePickers
               name="startDate"
               label="Start Date"
               onChange={(e) => setStartDate(e.target.value)}
+              value={startDate}
             />
           </div>
           {/* spaceeeeeeeeeeee */}
@@ -147,7 +177,7 @@ console.log(dateBirth);
           subtitle=" Vous pouvez accéder aux utilisateurs dans la rubrique
                     employees"
           title="Utilisateur crée"
-          openModal={setValidate}
+          displayModal={setValidate}
         />
       ) : (
         ""

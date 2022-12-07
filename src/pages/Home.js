@@ -14,7 +14,7 @@ const Home = () => {
           </h1>
           <Link
             to="employees"
-            class="font-medium text-indigo-600 hover:text-indigo-500 text-center"
+            className="font-medium text-indigo-600 hover:text-indigo-500 text-center"
           >
             View Current Employees
           </Link>

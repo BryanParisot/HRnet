@@ -3,10 +3,10 @@ import { departements } from "../../data/departement";
 import Input from "../Inputs/Input";
 import {
   Modal,
-  Dropdown,
-  DatePickers,
 } from "@bryan__parisot/component-modal-dropdown-datepicker-tailwind-css";
 import { states } from "./state";
+import Dropdown from "../Inputs/Dropdown";
+import DatePickers from "../Inputs/DatePickers";
 
 const CreateEmployee = () => {
   const [state, setState] = useState("");
@@ -56,9 +56,9 @@ const CreateEmployee = () => {
       "Start Date": new Date(startDate).toLocaleDateString("fr"),
       Street: input.street,
       City: input.city,
-      State: state,
+      State: state.abbreviation,
       "Zip Code": input.zipCode,
-      Department: departement,
+      Department: departement.name,
     };
 
     datas.push(data);
@@ -137,9 +137,10 @@ const CreateEmployee = () => {
             <Dropdown
               placeholder="Choose your state"
               setSelected={setState}
-              selected={state}
+              selected={state.name}
               options={states}
               label="State"
+              name="State"
             />
 
             <Input
@@ -157,9 +158,10 @@ const CreateEmployee = () => {
           <Dropdown
             placeholder="Choose your department"
             setSelected={setDepartement}
-            selected={departement}
+            selected={departement.name}
             options={departements}
             label="Department"
+            name="Department"
           />
         </div>
         <div>

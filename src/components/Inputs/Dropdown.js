@@ -1,30 +1,31 @@
 import React, { useState } from "react";
 
-const Dropdown = ({selected, setSelected, label, options, placeholder}) => {
+const Dropdown = ({selected, setSelected, label, options, placeholder, name}) => {
   const [isActive, setIsActive] = useState(false);
   return (
     <div className="mt-2">
-      <label for="combobox" class="block text-sm font-medium text-gray-700">
+      <label for={name} className="block text-sm font-medium text-gray-700">
         {label}
       </label>
-      <div class="relative mt-1">
+      <div className="relative mt-1">
         <input
-          id="combobox"
+          id={name}
           type="text"
-          class="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-12 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
-          role="combobox"
+          className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-12 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+          role={name}
           aria-controls="options"
           aria-expanded="false"
           value={selected}
           placeholder={placeholder}
+          name={name}
         />
         <button
           onClick={() => setIsActive(!isActive)}
           type="button"
-          class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none"
+          className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none"
         >
           <svg
-            class="h-5 w-5 text-gray-400"
+            className="h-5 w-5 text-gray-400"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -41,25 +42,26 @@ const Dropdown = ({selected, setSelected, label, options, placeholder}) => {
         {/* Results options here */}
         {isActive && (
           <ul
-            class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+            className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
             id="options"
             role="listbox"
           >
             {options.map((item) => (
               <li
+                key={item.id}
                 className="relative select-none py-2 pl-8 pr-4 text-gray-900 cursor-pointer hover:bg-indigo-600 hover:text-white"
                 id="option-0"
                 tabindex="-1"
                 onClick={() => {
-                  setSelected(item.name);
+                  setSelected(item);
                   setIsActive(false);
                 }}
               >
-                <span class="block truncate">{item.name}</span>
+                <span className="block truncate">{item.name}</span>
 
-                <span class="absolute inset-y-0 left-0 flex items-center pl-1.5 text-indigo-600">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-1.5 text-indigo-600">
                   <svg
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"

@@ -8,7 +8,7 @@ import Nodata from "../components/NotFound/Nodata";
 
 const Employees = () => {
   const [paginatione, setPagination] = useState(10);
-  const [columnDefs, setColumnDefs] = useState([
+  const [columnDefs] = useState([
     { field: "First Name", filter: "agTextColumnFilter", floatingFilter: true },
     { field: "Last Name" },
     { field: "Date of Birth" },

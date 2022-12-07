@@ -4,7 +4,7 @@ const DatePickers = (props) => {
   return (
     <div className="mt-2">
       <label
-        for={props.name}
+        htmlFor={props.name}
         className="block text-sm font-medium text-gray-700"
       >
         {props.label}

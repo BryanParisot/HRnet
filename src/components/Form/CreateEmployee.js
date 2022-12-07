@@ -69,6 +69,9 @@ const CreateEmployee = () => {
 
     setValidate(true);
   };
+  
+  console.log(departement)
+  console.log(state)
 
   return (
     <div className="bg-white py-8 px-4 shadow mt-10 sm:rounded-lg sm:px-10 w-10/12">

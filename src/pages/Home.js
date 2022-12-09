@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CreateEmployee from "../components/Form/CreateEmployee";
-import Navigation from "../components/Navigations/Navigation";
+import Navigation from "../components/Navigation/Navigation";
 
 const Home = () => {
   return (

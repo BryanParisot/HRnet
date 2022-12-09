@@ -1,4 +1,4 @@
-export const departements = [
+export const departments = [
   {
     name: "Sales",
   },

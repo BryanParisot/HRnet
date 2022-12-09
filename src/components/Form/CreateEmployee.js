@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { departements } from "../../data/departement";
+import { departments } from "../../data/department";
 import Input from "../Inputs/Input";
 import { Modal } from "@bryan__parisot/component-modal-dropdown-datepicker-tailwind-css";
 import { states } from "./state";
@@ -10,7 +10,7 @@ const CreateEmployee = () => {
   const [state, setState] = useState({ name: "" });
   const [dateBirth, setDateBirth] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [departement, setDepartement] = useState({
+  const [department, setDepartment] = useState({
     name: "",
     abbreviation: "",
   });
@@ -39,7 +39,7 @@ const CreateEmployee = () => {
       city: "",
       zipCode: "",
     });
-    setDepartement({
+    setDepartment({
       name: "",
       abbreviation: "",
     });
@@ -51,7 +51,7 @@ const CreateEmployee = () => {
   const addEmployees = (e) => {
     e.preventDefault();
 
-    let datas = JSON.parse(localStorage.getItem("employe") || "[]");
+    let dataEmployees = JSON.parse(localStorage.getItem("employee") || "[]");
     let data = {
       "First Name": input.firstName,
       "Last Name": input.lastName,
@@ -61,12 +61,12 @@ const CreateEmployee = () => {
       City: input.city,
       State: state.abbreviation,
       "Zip Code": input.zipCode,
-      Department: departement.name,
+      Department: department.name,
     };
 
-    datas.push(data);
+    dataEmployees.push(data);
 
-    localStorage.setItem("employe", JSON.stringify(datas));
+    localStorage.setItem("employee", JSON.stringify(dataEmployees));
 
     resetInput();
 
@@ -87,7 +87,7 @@ const CreateEmployee = () => {
             <Input
               type="text"
               label="First name"
-              placeholder="Joris"
+              placeholder="Boris"
               labelId="firstName"
               value={input.firstName}
               onChange={handleChange}
@@ -95,13 +95,12 @@ const CreateEmployee = () => {
             <Input
               type="text"
               label=" Last Name"
-              placeholder="Lejeau"
+              placeholder="king"
               labelId="lastName"
               value={input.lastName}
               onChange={handleChange}
             />
           </div>{" "}
-          {/* spaceeeeeee */}
           <div className="w-1/4">
             <DatePickers
               name="dateOfBirth"
@@ -116,12 +115,11 @@ const CreateEmployee = () => {
               value={startDate}
             />
           </div>
-          {/* spaceeeeeeeeeeee */}
           <div className="w-1/4">
             <Input
               type="text"
               label="Street"
-              placeholder="9 rue asert"
+              placeholder="9 rue boy"
               labelId="street"
               value={input.street}
               onChange={handleChange}
@@ -129,13 +127,12 @@ const CreateEmployee = () => {
             <Input
               type="text"
               label="City"
-              placeholder="Londre"
+              placeholder="London"
               labelId="city"
               value={input.city}
               onChange={handleChange}
             />
           </div>
-          {/* spaceeeeeeeee */}
           <div className="w-1/4">
             <Dropdown
               placeholder="Choose your state"
@@ -161,9 +158,9 @@ const CreateEmployee = () => {
           {" "}
           <Dropdown
             placeholder="Choose your department"
-            setSelected={setDepartement}
-            selected={departement.name}
-            options={departements}
+            setSelected={setDepartment}
+            selected={department.name}
+            options={departments}
             label="Department"
             name="Department"
             onChange={(e) => e.target.value}
@@ -180,10 +177,10 @@ const CreateEmployee = () => {
       </form>
       {validate ? (
         <Modal
-          button=" Revenir sur la création d'employé"
-          subtitle=" Vous pouvez accéder aux utilisateurs dans la rubrique
+          button="Back to employee creation"
+          subtitle=" You can access the users in the
                     employees"
-          title="Utilisateur crée"
+          title="Users create"
           displayModal={setValidate}
         />
       ) : (

@@ -1,13 +1,13 @@
 import { AgGridReact } from "ag-grid-react";
 import React, { useEffect, useState } from "react";
-import Navigation from "../components/Navigations/Navigation";
+import Navigation from "../components/Navigation/Navigation";
 
 import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
 import Nodata from "../components/NotFound/Nodata";
 
 const Employees = () => {
-  const [paginatione, setPagination] = useState(10);
+  const [page, setPage] = useState(10);
   const [columnDefs] = useState([
     { field: "First Name", filter: "agTextColumnFilter", floatingFilter: true },
     { field: "Last Name" },
@@ -21,7 +21,7 @@ const Employees = () => {
   ]);
 
   const [rowData, setRowData] = useState([]);
-  const paginationPageSize = paginatione;
+  const paginationPageSize = page;
   const pagination = true;
   const defaultColDef = {
     sortable: true,
@@ -30,8 +30,8 @@ const Employees = () => {
   };
 
   useEffect(() => {
-    const employe = JSON.parse(localStorage.getItem("employe"));
-     setRowData(employe);
+    const employee = JSON.parse(localStorage.getItem("employee"));
+     setRowData(employee);
   }, []);
 
 
@@ -46,7 +46,7 @@ const Employees = () => {
               <select
                 name="paginationNumber"
                 id="paginationNumber"
-                onChange={(e) => setPagination(e.target.value)}
+                onChange={(e) => setPage(e.target.value)}
               >
                 <option>10</option>
                 <option>25</option>

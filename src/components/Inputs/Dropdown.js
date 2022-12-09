@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 
-const Dropdown = ({selected, setSelected, label, options, placeholder, name}) => {
+const Dropdown = ({
+  selected,
+  setSelected,
+  label,
+  options,
+  placeholder,
+  name,
+  onChange,
+}) => {
   const [isActive, setIsActive] = useState(false);
   return (
     <div className="mt-2">
@@ -18,6 +26,7 @@ const Dropdown = ({selected, setSelected, label, options, placeholder, name}) =>
           value={selected}
           placeholder={placeholder}
           name={name}
+          onChange={onChange}
         />
         <button
           onClick={() => setIsActive(!isActive)}
@@ -51,7 +60,7 @@ const Dropdown = ({selected, setSelected, label, options, placeholder, name}) =>
                 key={id}
                 className="relative select-none py-2 pl-8 pr-4 text-gray-900 cursor-pointer hover:bg-indigo-600 hover:text-white"
                 id="option-0"
-                tabindex="-1"
+                tabIndex="-1"
                 onClick={() => {
                   setSelected(item);
                   setIsActive(false);

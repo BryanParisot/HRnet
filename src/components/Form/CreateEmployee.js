@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { departements } from "../../data/departement";
 import Input from "../Inputs/Input";
-import {
-  Modal,
-} from "@bryan__parisot/component-modal-dropdown-datepicker-tailwind-css";
+import { Modal } from "@bryan__parisot/component-modal-dropdown-datepicker-tailwind-css";
 import { states } from "./state";
 import Dropdown from "../Inputs/Dropdown";
 import DatePickers from "../Inputs/DatePickers";
 
 const CreateEmployee = () => {
-  const [state, setState] = useState("");
+  const [state, setState] = useState({ name: "" });
   const [dateBirth, setDateBirth] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [departement, setDepartement] = useState("");
+  const [departement, setDepartement] = useState({
+    name: "",
+    abbreviation: "",
+  });
   const [validate, setValidate] = useState(false);
   const [input, setInput] = useState({
     firstName: "",
@@ -21,7 +22,6 @@ const CreateEmployee = () => {
     city: "",
     zipCode: "",
   });
-
 
   const handleChange = (evt) => {
     const value = evt.target.value;
@@ -39,10 +39,13 @@ const CreateEmployee = () => {
       city: "",
       zipCode: "",
     });
-    setDepartement("");
+    setDepartement({
+      name: "",
+      abbreviation: "",
+    });
     setDateBirth("");
     setStartDate("");
-    setState("");
+    setState({ name: "" });
   };
 
   const addEmployees = (e) => {
@@ -69,9 +72,6 @@ const CreateEmployee = () => {
 
     setValidate(true);
   };
-  
-  console.log(departement)
-  console.log(state)
 
   return (
     <div className="bg-white py-8 px-4 shadow mt-10 sm:rounded-lg sm:px-10 w-10/12">
@@ -144,6 +144,7 @@ const CreateEmployee = () => {
               options={states}
               label="State"
               name="State"
+              onChange={handleChange}
             />
 
             <Input
@@ -165,6 +166,7 @@ const CreateEmployee = () => {
             options={departements}
             label="Department"
             name="Department"
+            onChange={handleChange}
           />
         </div>
         <div>

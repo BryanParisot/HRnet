@@ -34,7 +34,6 @@ const Employees = () => {
      setRowData(employe);
   }, []);
 
-  console.log("aa", rowData);
 
   return (
     <>

@@ -144,7 +144,7 @@ const CreateEmployee = () => {
               options={states}
               label="State"
               name="State"
-              onChange={handleChange}
+              onChange={(e) => e.target.value}
             />
 
             <Input
@@ -166,7 +166,7 @@ const CreateEmployee = () => {
             options={departements}
             label="Department"
             name="Department"
-            onChange={handleChange}
+            onChange={(e) => e.target.value}
           />
         </div>
         <div>

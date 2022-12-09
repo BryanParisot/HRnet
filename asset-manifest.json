@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/bryanparisot_14_021122/static/css/main.5208851d.css",
-    "main.js": "/bryanparisot_14_021122/static/js/main.629c8939.js",
+    "main.js": "/bryanparisot_14_021122/static/js/main.6d95c020.js",
     "index.html": "/bryanparisot_14_021122/index.html",
     "main.5208851d.css.map": "/bryanparisot_14_021122/static/css/main.5208851d.css.map",
-    "main.629c8939.js.map": "/bryanparisot_14_021122/static/js/main.629c8939.js.map"
+    "main.6d95c020.js.map": "/bryanparisot_14_021122/static/js/main.6d95c020.js.map"
   },
   "entrypoints": [
     "static/css/main.5208851d.css",
-    "static/js/main.629c8939.js"
+    "static/js/main.6d95c020.js"
   ]
 }

@@ -7,12 +7,12 @@ import Dropdown from "../Inputs/Dropdown";
 import DatePickers from "../Inputs/DatePickers";
 
 const CreateEmployee = () => {
-  const [state, setState] = useState({ name: "" });
-  const [dateBirth, setDateBirth] = useState("");
+  const [state, setState] = useState({ name: "Sales" });
+  const [dateBirth, setDateBirth] = useState("1990-01-01");
   const [startDate, setStartDate] = useState("");
   const [department, setDepartment] = useState({
-    name: "",
-    abbreviation: "",
+    name: "Alabama",
+    abbreviation: "Al",
   });
   const [validate, setValidate] = useState(false);
   const [input, setInput] = useState({
@@ -64,6 +64,7 @@ const CreateEmployee = () => {
       Department: department.name,
     };
 
+
     dataEmployees.push(data);
 
     localStorage.setItem("employee", JSON.stringify(dataEmployees));
@@ -80,10 +81,10 @@ const CreateEmployee = () => {
       </h2>
       <form
         onSubmit={addEmployees}
-        className="flex flex-col pt-4 space-x-6 items-center space-y-5"
+        className="flex flex-col pt-4 sm:space-x-6 items-center sm:space-y-5"
       >
-        <div className="flex space-x-4 w-10/12">
-          <div className="w-1/4 ">
+        <div className="flex flex-col sm:space-x-4 w-10/12 sm:flex-row">
+          <div className="sm:w-1/4 3/4 ">
             <Input
               type="text"
               label="First name"
@@ -101,7 +102,7 @@ const CreateEmployee = () => {
               onChange={handleChange}
             />
           </div>{" "}
-          <div className="w-1/4">
+          <div className="sm:w-1/4 3/4 ">
             <DatePickers
               name="dateOfBirth"
               label="Date of Birth"
@@ -115,7 +116,7 @@ const CreateEmployee = () => {
               value={startDate}
             />
           </div>
-          <div className="w-1/4">
+          <div className="sm:w-1/4 3/4 ">
             <Input
               type="text"
               label="Street"
@@ -133,7 +134,7 @@ const CreateEmployee = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="w-1/4">
+          <div className="sm:w-1/4 3/4 ">
             <Dropdown
               placeholder="Choose your state"
               setSelected={setState}
@@ -154,7 +155,7 @@ const CreateEmployee = () => {
             />
           </div>
         </div>
-        <div className="w-1/4 text-center">
+        <div className="sm:w-1/4 w-10/12 sm:3/4 sm:text-center ">
           {" "}
           <Dropdown
             placeholder="Choose your department"
@@ -177,10 +178,10 @@ const CreateEmployee = () => {
       </form>
       {validate ? (
         <Modal
-          button="Back to employee creation"
+          title="Users create"
           subtitle=" You can access the users in the
                     employees"
-          title="Users create"
+          button="Back to employee creation"
           displayModal={setValidate}
         />
       ) : (

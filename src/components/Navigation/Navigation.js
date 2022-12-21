@@ -20,7 +20,7 @@ const Navigation = () => {
                   alt="Your Company"
                 /> */}
               </div>
-              <div className="hidden sm:ml-6 sm:block">
+              <div className=" sm:ml-6 sm:block">
                 <div className="flex space-x-4">
                   <NavLink
                     exact

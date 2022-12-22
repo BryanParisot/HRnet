@@ -7,12 +7,12 @@ import Dropdown from "../Inputs/Dropdown";
 import DatePickers from "../Inputs/DatePickers";
 
 const CreateEmployee = () => {
-  const [state, setState] = useState({ name: "Sales" });
+  const [state, setState] = useState({ name: "Alabama" });
   const [dateBirth, setDateBirth] = useState("1990-01-01");
-  const [startDate, setStartDate] = useState("");
+  const [startDate, setStartDate] = useState("2000-01-01");
   const [department, setDepartment] = useState({
-    name: "Alabama",
-    abbreviation: "Al",
+    name: "Sales",
+    abbreviation: "Sal",
   });
   const [validate, setValidate] = useState(false);
   const [input, setInput] = useState({
